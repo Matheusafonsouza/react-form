@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Switch, FormControlLabel } from '@material-ui/core';
 
-const RegisterForm = () => {
+const RegisterForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [cpf, setCpf] = useState('');
@@ -9,7 +9,16 @@ const RegisterForm = () => {
   const [news, setNews] = useState(false);
 
   return (
-    <form>
+    <form onSubmit={e => {
+      e.preventDefault();
+      onSubmit({
+        name,
+        lastName,
+        cpf,
+        promos,
+        news
+      });
+    }}>
       <TextField
         id='outlined-basic'
         label='Nome'
