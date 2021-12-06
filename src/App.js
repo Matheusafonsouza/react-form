@@ -1,12 +1,13 @@
+import { Container } from '@material-ui/core';
 import './App.css';
 import RegisterForm from './components/RegisterForm/RegisterForm';
 
 function App() {
   return (
-    <>
-      <h1>Hello</h1>
+    <Container component='article' maxWidth='sm'>
+      <h1>Formulário de cadastro</h1>
       <RegisterForm />
-    </>
+    </Container>
   );
 }
 

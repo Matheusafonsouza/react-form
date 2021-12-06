@@ -9,18 +9,24 @@ const RegisterForm = () => {
         label='Nome'
         variant='outlined'
         type='text'
+        margin='normal'
+        fullWidth
       />
       <TextField
         id='outlined-basic'
         label='Sobrenome'
         variant='outlined'
         type='text'
+        margin='normal'
+        fullWidth
       />
       <TextField
         id='outlined-basic'
         label='CPF'
         variant='outlined'
         type='text'
+        margin='normal'
+        fullWidth
       />
 
       <label>Promoções</label>
