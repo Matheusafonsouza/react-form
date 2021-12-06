@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextField, Button, Switch, FormControlLabel } from '@material-ui/core';
 
 const RegisterForm = () => {
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [promos, setPromos] = useState(true);
+  const [news, setNews] = useState(false);
+
   return (
     <form>
       <TextField
@@ -11,6 +17,8 @@ const RegisterForm = () => {
         type='text'
         margin='normal'
         fullWidth
+        value={name}
+        onChange={e => setName(e.target.value)}
       />
       <TextField
         id='outlined-basic'
@@ -19,6 +27,8 @@ const RegisterForm = () => {
         type='text'
         margin='normal'
         fullWidth
+        value={lastName}
+        onChange={e => setLastName(e.target.value)}
       />
       <TextField
         id='outlined-basic'
@@ -27,15 +37,27 @@ const RegisterForm = () => {
         type='text'
         margin='normal'
         fullWidth
+        value={cpf}
+        onChange={e => setCpf(e.target.value)}
       />
 
       <FormControlLabel
         label='Promoções'
-        control={<Switch name='Promoções' defaultChecked color='primary' />}
+        control={<Switch
+          name='Promoções'
+          color='primary'
+          checked={promos}
+          onChange={e => setPromos(e.target.checked)}
+        />}
       />
       <FormControlLabel
         label='Promoções'
-        control={<Switch name='Novidades' color='primary' />}
+        control={<Switch
+          name='Novidades'
+          color='primary'
+          checked={news}
+          onChange={e => setNews(e.target.checked)}
+        />}
       />
 
       <Button
