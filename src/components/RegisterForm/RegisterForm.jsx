@@ -38,7 +38,6 @@ const RegisterForm = () => {
         control={<Switch name='Novidades' color='primary' />}
       />
 
-
       <Button
         type='submit'
         variant='contained'
