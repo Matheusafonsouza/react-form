@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Switch, FormControlLabel } from '@material-ui/core';
 
-const RegisterForm = ({ onSubmit }) => {
+const ClientForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [cpf, setCpf] = useState('');
@@ -102,4 +102,4 @@ const RegisterForm = ({ onSubmit }) => {
   );
 };
 
-export default RegisterForm;
+export default ClientForm;
