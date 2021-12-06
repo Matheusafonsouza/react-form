@@ -7,6 +7,19 @@ const RegisterForm = ({ onSubmit }) => {
   const [cpf, setCpf] = useState('');
   const [promos, setPromos] = useState(true);
   const [news, setNews] = useState(false);
+  const [errors, setErrors] = useState({
+    cpf: { valid: true, text: '' },
+    name: { valid: true, text: '' },
+    lastName: { valid: true, text: '' }
+  });
+
+  const validateCpf = (cpf) => {
+    if (cpf.length !== 11) {
+      return { valid: false, text: 'CPF precisa ter 11 caracteres' }
+    } else {
+      return { valid: true, text: '' }
+    }
+  };
 
   return (
     <form onSubmit={e => {
@@ -26,6 +39,8 @@ const RegisterForm = ({ onSubmit }) => {
         type='text'
         margin='normal'
         fullWidth
+        error={!errors.name.valid}
+        helperText={errors.name.text}
         value={name}
         onChange={e => setName(e.target.value)}
       />
@@ -36,6 +51,8 @@ const RegisterForm = ({ onSubmit }) => {
         type='text'
         margin='normal'
         fullWidth
+        error={!errors.lastName.valid}
+        helperText={errors.lastName.text}
         value={lastName}
         onChange={e => setLastName(e.target.value)}
       />
@@ -46,6 +63,11 @@ const RegisterForm = ({ onSubmit }) => {
         type='text'
         margin='normal'
         fullWidth
+        onBlur={e => {
+          setErrors({ ...errors, cpf: validateCpf(e.target.value) });
+        }}
+        error={!errors.cpf.valid}
+        helperText={errors.cpf.text}
         value={cpf}
         onChange={e => setCpf(e.target.value)}
       />
