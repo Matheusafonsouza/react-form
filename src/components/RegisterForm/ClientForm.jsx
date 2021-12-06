@@ -39,6 +39,7 @@ const ClientForm = ({ onSubmit }) => {
         type='text'
         margin='normal'
         fullWidth
+        required
         error={!errors.name.valid}
         helperText={errors.name.text}
         value={name}
@@ -51,6 +52,7 @@ const ClientForm = ({ onSubmit }) => {
         type='text'
         margin='normal'
         fullWidth
+        required
         error={!errors.lastName.valid}
         helperText={errors.lastName.text}
         value={lastName}
@@ -63,6 +65,7 @@ const ClientForm = ({ onSubmit }) => {
         type='text'
         margin='normal'
         fullWidth
+        required
         onBlur={e => {
           setErrors({ ...errors, cpf: validateCpf(e.target.value) });
         }}

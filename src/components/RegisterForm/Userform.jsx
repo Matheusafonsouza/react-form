@@ -10,14 +10,21 @@ const UserForm = ({ onSubmit }) => {
   });
 
   return (
-    <form>
+    <form onSubmit={e => {
+      e.preventDefault();
+      onSubmit({
+        email,
+        password
+      });
+    }}>
       <TextField
         id='outlined-basic'
         label='Email'
         variant='outlined'
-        type='text'
+        type='email'
         margin='normal'
         fullWidth
+        required
         error={!errors.email.valid}
         helperText={errors.email.text}
         value={email}
@@ -30,6 +37,7 @@ const UserForm = ({ onSubmit }) => {
         type='text'
         margin='normal'
         fullWidth
+        required
         error={!errors.password.valid}
         helperText={errors.password.text}
         value={password}
