@@ -1,4 +1,3 @@
-import { Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import ClientForm from './ClientForm';
 import DeliveryForm from './DeliveryForm';
@@ -15,24 +14,14 @@ const RegisterForm = ({ onSubmit }) => {
     console.log(data)
   };
 
-  const renderStepForm = (step) => {
-    switch (step) {
-      case 0:
-        return <ClientForm onSubmit={handleNextStep} />
-      case 1:
-        return <UserForm onSubmit={handleNextStep} />
-      case 2:
-        return <DeliveryForm onSubmit={handleSubmit} />
-      default:
-        return <Typography>Erro ao selecionar formulário</Typography>
-    }
-  };
+  const formSteps = [
+    <ClientForm onSubmit={handleNextStep} />,
+    <UserForm onSubmit={handleNextStep} />,
+    <DeliveryForm onSubmit={handleSubmit} />
+  ];
 
-  return (
-    <>
-      {renderStepForm(actualStep)}
-    </>
-  );
+
+  return (<>{formSteps[actualStep]}</>);
 };
 
 export default RegisterForm;

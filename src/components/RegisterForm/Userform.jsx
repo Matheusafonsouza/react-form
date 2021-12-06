@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Switch, FormControlLabel } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 
 const UserForm = ({ onSubmit }) => {
   const [email, setEmail] = useState('');
