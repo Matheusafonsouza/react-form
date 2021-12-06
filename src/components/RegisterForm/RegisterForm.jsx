@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Switch, FormControlLabel } from '@material-ui/core';
 
 const RegisterForm = () => {
   return (
@@ -29,11 +29,15 @@ const RegisterForm = () => {
         fullWidth
       />
 
-      <label>Promoções</label>
-      <input type='checkbox' />
+      <FormControlLabel
+        label='Promoções'
+        control={<Switch name='Promoções' defaultChecked color='primary' />}
+      />
+      <FormControlLabel
+        label='Promoções'
+        control={<Switch name='Novidades' color='primary' />}
+      />
 
-      <label>Novidades</label>
-      <input type='checkbox' />
 
       <Button
         type='submit'
