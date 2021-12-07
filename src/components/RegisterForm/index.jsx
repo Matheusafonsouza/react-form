@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Stepper, Typography, Step, StepLabel } from '@material-ui/core';
 import React, { useEffect, useState, useCallback } from 'react';
 import ClientForm from './ClientForm';
 import DeliveryForm from './DeliveryForm';
@@ -34,7 +34,17 @@ const RegisterForm = () => {
     <Typography variant='h5'>Obrigado pelo cadastro</Typography>
   ];
 
-  return (<>{formSteps[actualStep]}</>);
+  return (
+    <>
+      <Stepper activeStep={actualStep}>
+        <Step><StepLabel>Pessoal</StepLabel></Step>
+        <Step><StepLabel>Login</StepLabel></Step>
+        <Step><StepLabel>Entrega</StepLabel></Step>
+        <Step><StepLabel>Finalização</StepLabel></Step>
+      </Stepper>
+      {formSteps[actualStep]}
+    </>
+  );
 };
 
 export default RegisterForm;
