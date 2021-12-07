@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { Typography } from '@material-ui/core';
+import React, { useEffect, useState, useCallback } from 'react';
 import ClientForm from './ClientForm';
 import DeliveryForm from './DeliveryForm';
 import UserForm from './Userform';
@@ -7,27 +8,31 @@ const RegisterForm = () => {
   const [actualStep, setActualStep] = useState(0);
   const [formData, setFormData] = useState({});
 
-  const appendFormData = (data) => {
-    setFormData({ ...formData, ...data });
-  };
+  useEffect(() => {
+    if (actualStep === formSteps.length - 1) {
+      handleSubmit(formData);
+    }
+  });
 
-  const handleNextStep = (data) => {
-    appendFormData(data);
+  const handleNextStep = useCallback(() => {
     setActualStep(actualStep + 1);
-  };
+  }, [actualStep]);
 
-
-  const handleSubmit = (data) => {
-    appendFormData(data);
+  const appendFormData = useCallback((data) => {
     setFormData({ ...formData, ...data });
-  };
+    handleNextStep();
+  }, [formData, handleNextStep]);
+
+  const handleSubmit = useCallback((data) => {
+    console.log(data);
+  }, []);
 
   const formSteps = [
-    <ClientForm onSubmit={handleNextStep} />,
-    <UserForm onSubmit={handleNextStep} />,
-    <DeliveryForm onSubmit={handleSubmit} />
+    <ClientForm onSubmit={appendFormData} />,
+    <UserForm onSubmit={appendFormData} />,
+    <DeliveryForm onSubmit={appendFormData} />,
+    <Typography variant='h5'>Obrigado pelo cadastro</Typography>
   ];
-
 
   return (<>{formSteps[actualStep]}</>);
 };
