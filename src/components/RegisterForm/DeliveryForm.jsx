@@ -18,7 +18,7 @@ const DeliveryForm = ({ onSubmit }) => {
   return (
     <form onSubmit={e => {
       e.preventDefault();
-      onsubmit({
+      onSubmit({
         cep,
         address,
         number,

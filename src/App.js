@@ -4,10 +4,6 @@ import { Container, Typography } from '@material-ui/core';
 import RegisterForm from './components/RegisterForm';
 
 function App() {
-  const handleRegisterformSubmit = (data) => {
-    console.log(data);
-  };
-
   return (
     <Container component='article' maxWidth='sm'>
       <Typography
@@ -17,7 +13,7 @@ function App() {
       >
         Formulário de cadastro
       </Typography>
-      <RegisterForm onSubmit={handleRegisterformSubmit} />
+      <RegisterForm />
     </Container>
   );
 }
