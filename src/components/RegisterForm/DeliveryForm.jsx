@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useCallback} from 'react';
 import { TextField, Button } from '@material-ui/core';
 
 const DeliveryForm = ({ onSubmit }) => {
@@ -15,16 +15,27 @@ const DeliveryForm = ({ onSubmit }) => {
     city: { valid: true, text: '' }
   });
 
+  const canSubmit = useCallback(() => {
+    for (let field in errors) {
+      if (!errors[field].valid) {
+        return false;
+      }
+      return true;
+    }
+  }, [errors]);
+
   return (
     <form onSubmit={e => {
       e.preventDefault();
-      onSubmit({
+      if (canSubmit()){
+        onSubmit({
         cep,
         address,
         number,
         state,
         city
       });
+      }
     }}>
       <TextField
         id='outlined-basic'

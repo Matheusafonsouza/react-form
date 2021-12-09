@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { TextField, Button, Switch, FormControlLabel } from '@material-ui/core';
 
 const ClientForm = ({ onSubmit }) => {
@@ -21,16 +21,27 @@ const ClientForm = ({ onSubmit }) => {
     }
   };
 
+  const canSubmit = useCallback(() => {
+    for (let field in errors) {
+      if (!errors[field].valid) {
+        return false;
+      }
+      return true;
+    }
+  }, [errors]);
+
   return (
     <form onSubmit={e => {
       e.preventDefault();
-      onSubmit({
-        name,
-        lastName,
-        cpf,
-        promos,
-        news
-      });
+      if (canSubmit()) {
+        onSubmit({
+          name,
+          lastName,
+          cpf,
+          promos,
+          news
+        });
+      }
     }}>
       <TextField
         id='outlined-basic'
@@ -99,7 +110,7 @@ const ClientForm = ({ onSubmit }) => {
         variant='contained'
         color='primary'
       >
-        Cadastrar
+        Próximo
       </Button>
     </form>
   );
