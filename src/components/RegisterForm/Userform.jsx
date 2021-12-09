@@ -1,13 +1,14 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { TextField, Button } from '@material-ui/core';
+import SignInValidations from '../../context/validations';
+import useErrors from '../../hooks/useErrors';
 
 const UserForm = ({ onSubmit }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({
-    email: { valid: true, text: '' },
-    password: { valid: true, text: '' }
-  });
+
+  const validations = useContext(SignInValidations);
+  const [errors, validateErrors] = useErrors(validations);
 
   const canSubmit = useCallback(() => {
     for (let field in errors) {
@@ -36,8 +37,6 @@ const UserForm = ({ onSubmit }) => {
         margin='normal'
         fullWidth
         required
-        error={!errors.email.valid}
-        helperText={errors.email.text}
         value={email}
         onChange={e => setEmail(e.target.value)}
       />
@@ -49,8 +48,6 @@ const UserForm = ({ onSubmit }) => {
         margin='normal'
         fullWidth
         required
-        error={!errors.password.valid}
-        helperText={errors.password.text}
         value={password}
         onChange={e => setPassword(e.target.value)}
       />

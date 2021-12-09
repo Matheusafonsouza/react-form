@@ -3,7 +3,7 @@ import './App.css';
 import { Container, Typography } from '@material-ui/core';
 import RegisterForm from './components/RegisterForm';
 import SignInValidations from './context/validations';
-import { validateCpf } from './models/signInValidations';
+import { validateCep, validateCpf } from './models/signInValidations';
 
 function App() {
   return (
@@ -16,7 +16,8 @@ function App() {
         Formulário de cadastro
       </Typography>
       <SignInValidations.Provider value={{
-        cpf: validateCpf
+        cpf: validateCpf,
+        cep: validateCep
       }}>
         <RegisterForm />
       </SignInValidations.Provider>

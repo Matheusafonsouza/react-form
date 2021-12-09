@@ -1,5 +1,7 @@
-import React, { useState , useCallback} from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { TextField, Button } from '@material-ui/core';
+import useErrors from '../../hooks/useErrors';
+import SignInValidations from '../../context/validations';
 
 const DeliveryForm = ({ onSubmit }) => {
   const [cep, setCep] = useState('');
@@ -7,13 +9,9 @@ const DeliveryForm = ({ onSubmit }) => {
   const [number, setNumber] = useState('');
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
-  const [errors, setErrors] = useState({
-    cep: { valid: true, text: '' },
-    address: { valid: true, text: '' },
-    number: { valid: true, text: '' },
-    state: { valid: true, text: '' },
-    city: { valid: true, text: '' }
-  });
+
+  const validations = useContext(SignInValidations);
+  const [errors, validateErrors] = useErrors(validations);
 
   const canSubmit = useCallback(() => {
     for (let field in errors) {
@@ -27,14 +25,14 @@ const DeliveryForm = ({ onSubmit }) => {
   return (
     <form onSubmit={e => {
       e.preventDefault();
-      if (canSubmit()){
+      if (canSubmit()) {
         onSubmit({
-        cep,
-        address,
-        number,
-        state,
-        city
-      });
+          cep,
+          address,
+          number,
+          state,
+          city
+        });
       }
     }}>
       <TextField
@@ -45,8 +43,6 @@ const DeliveryForm = ({ onSubmit }) => {
         margin='normal'
         fullWidth
         required
-        error={!errors.address.valid}
-        helperText={errors.address.text}
         value={address}
         onChange={e => setAddress(e.target.value)}
       />
@@ -58,6 +54,7 @@ const DeliveryForm = ({ onSubmit }) => {
         margin='normal'
         required
         error={!errors.cep.valid}
+        onBlur={validateErrors}
         helperText={errors.cep.text}
         value={cep}
         onChange={e => setCep(e.target.value)}
@@ -69,8 +66,6 @@ const DeliveryForm = ({ onSubmit }) => {
         type='text'
         margin='normal'
         required
-        error={!errors.number.valid}
-        helperText={errors.number.text}
         value={number}
         onChange={e => setNumber(e.target.value)}
       />
@@ -81,8 +76,6 @@ const DeliveryForm = ({ onSubmit }) => {
         type='text'
         margin='normal'
         required
-        error={!errors.state.valid}
-        helperText={errors.state.text}
         value={state}
         onChange={e => setState(e.target.value)}
       />
@@ -93,8 +86,6 @@ const DeliveryForm = ({ onSubmit }) => {
         type='text'
         margin='normal'
         required
-        error={!errors.city.valid}
-        helperText={errors.city.text}
         value={city}
         onChange={e => setCity(e.target.value)}
       />

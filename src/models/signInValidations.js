@@ -6,4 +6,12 @@ const validateCpf = (cpf) => {
   }
 };
 
-export { validateCpf };
+const validateCep = (cpf) => {
+  if (cpf.length !== 8) {
+    return { valid: false, text: 'CEP precisa ter 8 caracteres' }
+  } else {
+    return { valid: true, text: '' }
+  }
+};
+
+export { validateCpf, validateCep };
