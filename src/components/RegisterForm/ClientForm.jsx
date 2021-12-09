@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { TextField, Button, Switch, FormControlLabel } from '@material-ui/core';
+import SignInValidations from '../../context/validations';
 
 const ClientForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
@@ -13,13 +14,7 @@ const ClientForm = ({ onSubmit }) => {
     lastName: { valid: true, text: '' }
   });
 
-  const validateCpf = (cpf) => {
-    if (cpf.length !== 11) {
-      return { valid: false, text: 'CPF precisa ter 11 caracteres' }
-    } else {
-      return { valid: true, text: '' }
-    }
-  };
+  const validations = useContext(SignInValidations);
 
   const canSubmit = useCallback(() => {
     for (let field in errors) {
@@ -78,7 +73,7 @@ const ClientForm = ({ onSubmit }) => {
         fullWidth
         required
         onBlur={e => {
-          setErrors({ ...errors, cpf: validateCpf(e.target.value) });
+          setErrors({ ...errors, cpf: validations.cpf(e.target.value) });
         }}
         error={!errors.cpf.valid}
         helperText={errors.cpf.text}

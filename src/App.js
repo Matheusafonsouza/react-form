@@ -2,6 +2,8 @@ import 'fontsource-roboto';
 import './App.css';
 import { Container, Typography } from '@material-ui/core';
 import RegisterForm from './components/RegisterForm';
+import SignInValidations from './context/validations';
+import { validateCpf } from './models/signInValidations';
 
 function App() {
   return (
@@ -13,7 +15,11 @@ function App() {
       >
         Formulário de cadastro
       </Typography>
-      <RegisterForm />
+      <SignInValidations.Provider value={{
+        cpf: validateCpf
+      }}>
+        <RegisterForm />
+      </SignInValidations.Provider>
     </Container>
   );
 }
