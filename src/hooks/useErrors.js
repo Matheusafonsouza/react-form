@@ -12,8 +12,11 @@ const useErrors = (validations) => {
   const [errors, setErrors] = useState(createInitialState(validations));
 
   const validateErrors = (event) => {
+    console.log(event)
     const { name, value } = event.target;
     const newState = { ...errors };
+    console.log(name)
+    console.log(validations)
     newState[name] = validations[name](value);
     setErrors(newState);
   };

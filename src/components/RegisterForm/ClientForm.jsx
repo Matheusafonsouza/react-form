@@ -40,6 +40,7 @@ const ClientForm = ({ onSubmit }) => {
         label='Nome'
         variant='outlined'
         type='text'
+        name='name'
         margin='normal'
         fullWidth
         required
@@ -50,6 +51,7 @@ const ClientForm = ({ onSubmit }) => {
         id='outlined-basic'
         label='Sobrenome'
         variant='outlined'
+        name='lastName'
         type='text'
         margin='normal'
         fullWidth
@@ -60,6 +62,7 @@ const ClientForm = ({ onSubmit }) => {
       <TextField
         id='outlined-basic'
         label='CPF'
+        name='cpf'
         variant='outlined'
         type='text'
         margin='normal'

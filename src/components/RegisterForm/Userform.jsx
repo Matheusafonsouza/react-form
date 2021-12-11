@@ -33,6 +33,7 @@ const UserForm = ({ onSubmit }) => {
         id='outlined-basic'
         label='Email'
         variant='outlined'
+        name='email'
         type='email'
         margin='normal'
         fullWidth
@@ -45,6 +46,7 @@ const UserForm = ({ onSubmit }) => {
         label='Senha'
         variant='outlined'
         type='text'
+        name='password'
         margin='normal'
         fullWidth
         required

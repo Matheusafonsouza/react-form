@@ -39,6 +39,7 @@ const DeliveryForm = ({ onSubmit }) => {
         id='outlined-basic'
         label='Endereço'
         variant='outlined'
+        name='address'
         type='text'
         margin='normal'
         fullWidth
@@ -50,6 +51,7 @@ const DeliveryForm = ({ onSubmit }) => {
         id='outlined-basic'
         label='CEP'
         variant='outlined'
+        name='cep'
         type='text'
         margin='normal'
         required
@@ -62,6 +64,7 @@ const DeliveryForm = ({ onSubmit }) => {
       <TextField
         id='outlined-basic'
         label='Número'
+        name='number'
         variant='outlined'
         type='text'
         margin='normal'
@@ -72,6 +75,7 @@ const DeliveryForm = ({ onSubmit }) => {
       <TextField
         id='outlined-basic'
         label='Estado'
+        name='state'
         variant='outlined'
         type='text'
         margin='normal'
@@ -82,6 +86,7 @@ const DeliveryForm = ({ onSubmit }) => {
       <TextField
         id='outlined-basic'
         label='Cidade'
+        name='city'
         variant='outlined'
         type='text'
         margin='normal'
